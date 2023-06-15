@@ -1,0 +1,26 @@
+{
+    "title": "Scraper input",
+    "description": "Input for the Instagram scraper",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "usernames": {
+            "title": "Usernames to scrape",
+            "type": "array",
+            "description": "usernames to start with",
+            "prefill": [
+                { "username": "instagram" },
+                { "username": "steelseries" }
+            ],
+            "editor": "stringList"
+        },
+          "sessionid": {
+            "title": "Instagram Session ID",
+            "type": "string",
+            "description": "Instagram Session ID",
+            "prefill": "SESSIONID",
+            "editor": "textfield"
+        }
+    },
+    "required": ["sessionid", "usernames"]
+}

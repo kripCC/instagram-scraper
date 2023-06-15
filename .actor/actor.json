@@ -1,0 +1,40 @@
+{
+    "actorSpecification": 1,
+    "name": "instagram-scraper",
+    "title": "Instagram scraper",
+    "version": "1.0.0",
+    "storages": {
+          "dataset": {
+            "actorSpecification": 1,
+            "views": {
+                "overview": {
+                    "title": "Overview",
+                    "transformation": {
+                        "fields": [
+                            "username",
+                            "caption",
+                            "url"
+                        ]
+                    },
+                     "display": {
+                        "component": "table",
+                        "properties": {
+                            "username": {
+                                "label": "Text",
+                                "format": "text"
+                            },
+                            "caption": {
+                                "label": "Text",
+                                "format": "text"
+                            },
+                            "url":{
+                                "label": "Text",
+                                "format": "text"
+                            }
+                        }
+                     }
+                }
+            }
+          }
+    }
+}
