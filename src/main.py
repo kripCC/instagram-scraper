@@ -19,6 +19,7 @@ async def main():
         actor_input = await Actor.get_input() or {}
         usernames = actor_input.get("usernames")
         for username in usernames:
+            print(username)
             result = requests.get(f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}", headers=headers)
             print(result.text)
             data = json.loads(result.text)
