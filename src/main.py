@@ -20,8 +20,9 @@ async def scrape_user(username: str):
     result = client.get(
         f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}",
     )
-    print("result: " + str(result))
+    print("result:" + str(result))
     data = json.loads(result.content)
+    print("data:" + str(data))
     timeline = data["data"]["user"]["edge_owner_to_timeline_media"]["edges"][0]["node"]
     video = timeline["is_video"]
     caption = timeline["edge_media_to_caption"]["edges"][0]["node"]["text"]
@@ -37,9 +38,6 @@ async def scrape_user(username: str):
     result["thumbnail"] = thumbnail
     result["url"] = url
     return result
-
-print(scrape_user("bmwdesigned"))
-
 
 async def main():
     async with Actor:
