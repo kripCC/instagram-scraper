@@ -46,7 +46,7 @@ async def main():
         actor_input = await Actor.get_input() or {}
         usernames = actor_input.get("usernames")
         for username in usernames:
-            data = scrape_user(username)      
+            data = await scrape_user(username)      
             await Actor.push_data({
                         'username': username,
                         'video': data["video"],
