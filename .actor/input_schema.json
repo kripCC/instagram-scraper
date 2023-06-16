@@ -13,14 +13,7 @@
                 { "username": "steelseries" }
             ],
             "editor": "stringList"
-        },
-          "sessionid": {
-            "title": "Instagram Session ID",
-            "type": "string",
-            "description": "Instagram Session ID",
-            "prefill": "SESSIONID",
-            "editor": "textfield"
         }
     },
-    "required": ["sessionid", "usernames"]
+    "required": ["usernames"]
 }

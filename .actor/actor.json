@@ -12,7 +12,9 @@
                     "transformation": {
                         "fields": [
                             "username",
+                            "video",
                             "caption",
+                            "thumbnail",
                             "url"
                         ]
                     },
@@ -23,7 +25,15 @@
                                 "label": "Text",
                                 "format": "text"
                             },
+                            "video": {
+                                "label": "Video",
+                                "format": "boolean"
+                            },
                             "caption": {
+                                "label": "Text",
+                                "format": "text"
+                            },
+                            "thumbnail": {
                                 "label": "Text",
                                 "format": "text"
                             },
