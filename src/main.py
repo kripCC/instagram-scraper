@@ -1,10 +1,9 @@
 from apify import Actor
 from instagrapi import Client
 import json
-import httpx
+import requests
 from urllib.parse import quote
-client = httpx.Client(
-    headers={
+headers={
         # this is internal ID of an instegram backend app. It doesn't change often.
         "x-ig-app-id": "936619743392459",
         # use browser-like features
@@ -13,16 +12,16 @@ client = httpx.Client(
         "Accept-Encoding": "gzip, deflate, br",
         "Accept": "*/*",
     }
-)
+
 
 async def main():
     async with Actor:
         actor_input = await Actor.get_input() or {}
         usernames = actor_input.get("usernames")
         for username in usernames:
-            result = client.get(f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}",)
-            print(result.content)
-            data = json.loads(result.content)
+            result = requests.get(f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}", headers=headers)
+            print(result.text)
+            data = json.loads(result.text)
             timeline = data["data"]["user"]["edge_owner_to_timeline_media"]["edges"][0]["node"]
             video = timeline["is_video"]
             caption = timeline["edge_media_to_caption"]["edges"][0]["node"]["text"]
