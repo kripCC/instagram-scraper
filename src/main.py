@@ -20,7 +20,7 @@ async def scrape_user(username: str):
     result = client.get(
         f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}",
     )
-    print("result: " + result)
+    print("result: " + str(result))
     data = json.loads(result.content)
     timeline = data["data"]["user"]["edge_owner_to_timeline_media"]["edges"][0]["node"]
     video = timeline["is_video"]
