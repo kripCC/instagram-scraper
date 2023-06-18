@@ -19,14 +19,14 @@
             "type": "string",
             "description": "HTTP Proxy to use",
             "prefill": "0.0.0.0",
-            "editor": "keyValue"
+            "editor": "textfield"
         },
         "https_proxy": {
             "title": "HTTPS_PROXY",
             "type": "string",
             "description": "HTTPS Proxy to use",
             "prefill": "0.0.0.0",
-            "editor": "keyValue"
+            "editor": "textfield"
         }
     },
     "required": ["usernames", "http_proxy", "https_proxy"]
