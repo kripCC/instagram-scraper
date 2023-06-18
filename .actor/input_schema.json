@@ -13,7 +13,21 @@
                 { "username": "steelseries" }
             ],
             "editor": "stringList"
+        },
+        "http_proxy": {
+            "title": "HTTP_PROXY",
+            "type": "string",
+            "description": "HTTP Proxy to use",
+            "prefill": "0.0.0.0",
+            "editor": "keyValue"
+        },
+        "https_proxy": {
+            "title": "HTTPS_PROXY",
+            "type": "string",
+            "description": "HTTPS Proxy to use",
+            "prefill": "0.0.0.0",
+            "editor": "keyValue"
         }
     },
-    "required": ["usernames"]
+    "required": ["usernames", "http_proxy", "https_proxy"]
 }

@@ -18,9 +18,15 @@ async def main():
     async with Actor:
         actor_input = await Actor.get_input() or {}
         usernames = actor_input.get("usernames")
+        http_proxy = actor_input.get("http_proxy")
+        https_proxy = actor_input.get("https_proxy")
+        proxies = {
+          'http': http_proxy,
+          'https': https_proxy
+        }
         for username in usernames:
             print(username)
-            result = requests.get(f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}", headers=headers)
+            result = requests.get(f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}", headers=headers, proxies=proxies)
             print(result.text)
             data = json.loads(result.text)
             timeline = data["data"]["user"]["edge_owner_to_timeline_media"]["edges"][0]["node"]
