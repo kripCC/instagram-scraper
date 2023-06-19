@@ -6,37 +6,27 @@ from selenium_stealth import stealth
 import json
 import requests
 from urllib.parse import quote
-headers={
-        # this is internal ID of an instegram backend app. It doesn't change often.
-        "x-ig-app-id": "936619743392459",
-        # use browser-like features
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36",
-        "Accept-Language": "en-US,en;q=0.9,ru;q=0.8",
-        "Accept-Encoding": "gzip, deflate",
-        "Accept": "*/*",
-    }
 
-def prepare_browser(proxy_url):
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument(f'--proxy-server={proxy_url}')
-    chrome_options.add_argument("start-maximized")
-    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    chrome_options.add_experimental_option('useAutomationExtension', False)
-    driver = webdriver.Chrome(options= chrome_options)
-    stealth(driver,
-            user_agent= 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.53 Safari/537.36',
-            languages= ["en-US", "en"],
-            vendor=  "Google Inc.",
-            platform=  "Win32",
-            webgl_vendor=  "Intel Inc.",
-            renderer=  "Intel Iris OpenGL Engine",
-            fix_hairline= False,
-            run_on_insecure_origins= False,
-            )
-    return driver
+
 
 async def main():
     async with Actor:
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument(f'--proxy-server={proxy_url}')
+        chrome_options.add_argument("start-maximized")
+        chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        chrome_options.add_experimental_option('useAutomationExtension', False)
+        driver = webdriver.Chrome(options= chrome_options)
+        stealth(driver,
+                user_agent= 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.53 Safari/537.36',
+                languages= ["en-US", "en"],
+                vendor=  "Google Inc.",
+                platform=  "Win32",
+                webgl_vendor=  "Intel Inc.",
+                renderer=  "Intel Iris OpenGL Engine",
+                fix_hairline= False,
+                run_on_insecure_origins= False,
+                )
         actor_input = await Actor.get_input() or {}
         proxy_settings = actor_input.get('proxySettings')
         proxy_configuration = await Actor.create_proxy_configuration(actor_proxy_input=proxy_settings)
