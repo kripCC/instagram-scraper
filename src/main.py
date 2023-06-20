@@ -17,7 +17,6 @@ async def main():
         proxy_url = await proxy_configuration.new_url()
         usernames = actor_input.get("usernames")
         chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument("start-maximized")
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
