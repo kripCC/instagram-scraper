@@ -24,6 +24,7 @@ async def main():
         proxy_url = await proxy_configuration.new_url()
         usernames = actor_input.get("usernames")
         chrome_options.add_argument(f'--proxy-server={proxy_url}')
+        driver = webdriver.Chrome(options= chrome_options)
         stealth(driver,
                 user_agent= 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.53 Safari/537.36',
                 languages= ["en-US", "en"],
@@ -34,7 +35,6 @@ async def main():
                 fix_hairline= False,
                 run_on_insecure_origins= False,
                 )
-        driver = webdriver.Chrome(options= chrome_options)
         for username in usernames:
             print(username)
             url = f'https://instagram.com/{username}/?__a=1&__d=dis'
