@@ -33,6 +33,7 @@ async def main():
         proxy_settings = actor_input.get('proxySettings')
         proxy_configuration = await Actor.create_proxy_configuration(actor_proxy_input=proxy_settings)
         proxy_url = await proxy_configuration.new_url()
+        print(proxy_url)
         usernames = actor_input.get("usernames")
         for username in usernames:
             print(username)
