@@ -11,6 +11,11 @@ from urllib.parse import quote
 
 async def main():
     async with Actor:
+        actor_input = await Actor.get_input() or {}
+        proxy_settings = actor_input.get('proxySettings')
+        proxy_configuration = await Actor.create_proxy_configuration(actor_proxy_input=proxy_settings)
+        proxy_url = await proxy_configuration.new_url()
+        usernames = actor_input.get("usernames")
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("start-maximized")
         chrome_options.add_argument('--headless')
@@ -29,11 +34,6 @@ async def main():
                 fix_hairline= False,
                 run_on_insecure_origins= False,
                 )
-        actor_input = await Actor.get_input() or {}
-        proxy_settings = actor_input.get('proxySettings')
-        proxy_configuration = await Actor.create_proxy_configuration(actor_proxy_input=proxy_settings)
-        proxy_url = await proxy_configuration.new_url()
-        usernames = actor_input.get("usernames")
         for username in usernames:
             print(username)
             url = f'https://instagram.com/{username}/?__a=1&__d=dis'
