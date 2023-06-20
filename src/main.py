@@ -6,9 +6,6 @@ from selenium_stealth import stealth
 import json
 import requests
 from urllib.parse import quote
-
-
-
 async def main():
     async with Actor:
         actor_input = await Actor.get_input() or {}
