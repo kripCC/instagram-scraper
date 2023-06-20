@@ -38,7 +38,7 @@ async def main():
             print(f"Attempting: {driver.current_url}")
             if "login" in driver.current_url:
                 print("Failed/ redir to login")
-             driver.quit()
+                driver.quit()
             else:
                 print ("Success")
                 resp_body = driver.find_element(By.TAG_NAME, "body").text
