@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from pprint import pprint
 from selenium_stealth import stealth
+from webdriver_manager.chrome import ChromeDriverManager
 import json
 import requests
 from urllib.parse import quote
@@ -17,12 +18,13 @@ async def main():
         proxy_url = await proxy_configuration.new_url()
         usernames = actor_input.get("usernames")
         chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("start-maximized")
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
         chrome_options.add_experimental_option('useAutomationExtension', False)
         chrome_options.add_argument(f'--proxy-server={proxy_url}')
-        driver = webdriver.Chrome(options= chrome_options)
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options= chrome_options)
         stealth(driver,
                 user_agent= 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.53 Safari/537.36',
                 languages= ["en-US", "en"],
