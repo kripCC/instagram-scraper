@@ -17,12 +17,6 @@ async def main():
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
         chrome_options.add_experimental_option('useAutomationExtension', False)
-
-        actor_input = await Actor.get_input() or {}
-        proxy_settings = actor_input.get('proxySettings')
-        proxy_configuration = await Actor.create_proxy_configuration(actor_proxy_input=proxy_settings)
-        proxy_url = await proxy_configuration.new_url()
-        usernames = actor_input.get("usernames")
         chrome_options.add_argument(f'--proxy-server={proxy_url}')
         driver = webdriver.Chrome(options= chrome_options)
         stealth(driver,
@@ -35,6 +29,11 @@ async def main():
                 fix_hairline= False,
                 run_on_insecure_origins= False,
                 )
+        actor_input = await Actor.get_input() or {}
+        proxy_settings = actor_input.get('proxySettings')
+        proxy_configuration = await Actor.create_proxy_configuration(actor_proxy_input=proxy_settings)
+        proxy_url = await proxy_configuration.new_url()
+        usernames = actor_input.get("usernames")
         for username in usernames:
             print(username)
             url = f'https://instagram.com/{username}/?__a=1&__d=dis'
@@ -42,7 +41,7 @@ async def main():
             print(f"Attempting: {driver.current_url}")
             if "login" in driver.current_url:
                 print("Failed/ redir to login")
-                driver.quit()
+             # driver.quit()
             else:
                 print ("Success")
                 resp_body = driver.find_element(By.TAG_NAME, "body").text
